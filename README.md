@@ -78,14 +78,13 @@ That's it — your dashboard auto-refreshes every hour. ✨
 
 <div align="center">
 
-| Feature | Details |
-|---------|---------|
-| **KPI Cards** | Total runs, success rate, fastest model, best throughput |
-| **Analytics** | Consistency scores, median latency, per-model stats |
-| **Charts** | Response times, throughput distribution, scatter plots, trends |
-| **Results Table** | Sort by speed, throughput, or name · click to read full response |
-| **History** | Full audit trail with trend visualizations |
-| **Live Status** | Online/offline indicator · auto-refresh every 30 s |
+| Tab | What you get |
+|-----|-------------|
+| **📊 Overview** | 5 animated KPI cards · success trend charts · top-10 speed & throughput bars · model reliability pills |
+| **🏆 Leaderboard** | Composite score rankings · sortable columns · SVG sparklines · trend indicators (↑↓→) · provider chips |
+| **🔬 Explorer** | Per-model deep dive · 64-run response time history chart · error breakdown donut · availability heatmap |
+| **⏱ Timeline** | Filterable run history (All / 24h / 48h / 7d) · expandable run cards with full per-model detail |
+| **⚔️ Compare** | Head-to-head overlay chart · win-rate stats · side-by-side metric comparison |
 
 </div>
 
@@ -141,7 +140,7 @@ That's it — your dashboard auto-refreshes every hour. ✨
 └───────────────────────────────────────────────────────────────────────────── ┘
                                      │
                           ┌──────────▼──────────┐
-                          │  Static Dashboard   │  auto-refresh every 30 s
+                          │  Static Dashboard   │  rebuilds on each push  
                           │  (Pages / Netlify)  │
                           └─────────────────────┘
 ```
@@ -213,8 +212,8 @@ python3 scripts/test_models.py
       "responseTime": 2500,       // ms — request to response
       "tokensGenerated": 150,
       "totalTokens": 170,
-      "throughput": 60.0,         // tokens/sec
-      "response": "..."
+      "response": "...",          // full model response text
+      "error": null               // error message string if success: false
     }],
     "summary": {
       "successCount": 20,
