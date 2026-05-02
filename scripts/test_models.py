@@ -45,9 +45,9 @@ ALL_MODELS = [
     "meta/llama-3.2-90b-vision-instruct",
 ]
 
-GROUP1_MODELS = ALL_MODELS[:12]
+GROUP1_MODELS = ALL_MODELS[:11]
 
-GROUP2_MODELS = ALL_MODELS[12:]
+GROUP2_MODELS = ALL_MODELS[11:]
 
 
 def selected_models() -> list[str]:
