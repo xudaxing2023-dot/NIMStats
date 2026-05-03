@@ -1161,13 +1161,15 @@ function renderExplorer() {
     });
   }
 
-  // Heatmap — dynamic columns based on total run count
+  // Heatmap — dynamic columns based on total run count, newest at top-left
   const hm = document.getElementById('explorer-heatmap');
-  const hmCols = Math.ceil(Math.sqrt(s.results.length));
+  const reversed = [...s.results].reverse(); // newest first
+  const hmCols = Math.ceil(Math.sqrt(reversed.length));
   hm.style.gridTemplateColumns = `repeat(${hmCols}, 1fr)`;
-  hm.innerHTML = s.results.map((r, i) => {
-    if (!r) return `<div class="heatmap-cell miss" title="Run ${i+1}: No data"></div>`;
-    const ts = fmtTimestamp(state.runs[i]?.timestamp || '');
+  hm.innerHTML = reversed.map((r, i) => {
+    const runIdx = s.results.length - 1 - i;
+    if (!r) return `<div class="heatmap-cell miss" title="Run ${runIdx+1}: No data"></div>`;
+    const ts = fmtTimestamp(state.runs[runIdx]?.timestamp || '');
     if (r.success) return `<div class="heatmap-cell pass" title="${ts}: ✓ ${(r.responseTime/1000).toFixed(2)}s"></div>`;
     return `<div class="heatmap-cell fail" title="${ts}: ✗ ${r.error||'Error'}"></div>`;
   }).join('');

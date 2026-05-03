@@ -19,9 +19,7 @@ jobs:
         env:
           NIM_API_KEY: ${{ secrets.NIM_API_KEY }}
           MODEL_GROUP: group1
-        run: |
-          chmod +x scripts/test-models.sh
-          cd scripts && bash test-models.sh
+        run: python3 scripts/test_models.py
       
       - name: Upload group1 results
         uses: actions/upload-artifact@v7
@@ -43,9 +41,7 @@ jobs:
         env:
           NIM_API_KEY: ${{ secrets.NIM_API_KEY }}
           MODEL_GROUP: group2
-        run: |
-          chmod +x scripts/test-models.sh
-          cd scripts && bash test-models.sh
+        run: python3 scripts/test_models.py
       
       - name: Upload group2 results
         uses: actions/upload-artifact@v7
@@ -71,12 +67,9 @@ jobs:
       
       - name: Merge results and update history
         run: |
-          # Move artifacts to scripts directory
           mv scripts/results-group1/results.json scripts/results-group1.json || true
           mv scripts/results-group2/results.json scripts/results-group2.json || true
-          
-          chmod +x scripts/merge-results.sh
-          cd scripts && bash merge-results.sh
+          python3 scripts/merge_results.py
       
       - name: Commit and push results
         run: |
