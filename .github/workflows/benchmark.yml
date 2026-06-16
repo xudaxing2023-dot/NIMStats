@@ -1,81 +1,65 @@
 name: Benchmark NVIDIA NIM Models
-
 on:
-  workflow_dispatch:      # 手动触发
-  
+  workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'   # 每小时整点自动运行（UTC时间）
-
+    - cron: '0 * * * *'
 concurrency:
   group: nim-benchmark
   cancel-in-progress: true
-
 jobs:
   test_group1:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
-      
+        uses: actions/checkout@v4
       - name: Test model group 1
         env:
           NIM_API_KEY: ${{ secrets.NIM_API_KEY }}
           MODEL_GROUP: group1
         run: python3 scripts/test_models.py
-      
       - name: Upload group1 results
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: results-group1
           path: scripts/results.json
           retention-days: 1
-
   test_group2:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
-      
+        uses: actions/checkout@v4
       - name: Test model group 2
         env:
           NIM_API_KEY: ${{ secrets.NIM_API_KEY }}
           MODEL_GROUP: group2
         run: python3 scripts/test_models.py
-      
       - name: Upload group2 results
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: results-group2
           path: scripts/results.json
           retention-days: 1
-
   merge_and_update:
     needs: [test_group1, test_group2]
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
-      
+        uses: actions/checkout@v4
       - name: Download all results
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v4
         with:
           path: scripts/
-      
       - name: Merge results and update history
         run: |
           mv scripts/results-group1/results.json scripts/results-group1.json || true
           mv scripts/results-group2/results.json scripts/results-group2.json || true
           python3 scripts/merge_results.py
-      
       - name: Commit and push results
         run: |
           git config user.name "github-actions[bot]"
