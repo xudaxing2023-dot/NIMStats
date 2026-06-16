@@ -1,14 +1,22 @@
 name: Benchmark NVIDIA NIM Models
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:      # 保留手动触发，方便你随时测试
+  
+  schedule:
+    - cron: '0 * * * *'   # 每小时整点运行（UTC时间）
+
+# 防止多个相同 workflow 同时运行
+concurrency:
+  group: nim-benchmark
+  cancel-in-progress: true
 
 jobs:
   test_group1:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -30,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -53,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
