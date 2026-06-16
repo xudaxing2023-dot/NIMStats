@@ -1,12 +1,12 @@
 name: Benchmark NVIDIA NIM Models
 
 on:
-  workflow_dispatch:      # 保留手动触发，方便你随时测试
+  workflow_dispatch:      # 手动触发
   
   schedule:
-    - cron: '0 * * * *'   # 每小时整点运行（UTC时间）
+    - cron: '0 * * * *'   # 每小时整点自动运行（UTC时间）
 
-# 防止多个相同 workflow 同时运行
+# 防止同时运行多个实例
 concurrency:
   group: nim-benchmark
   cancel-in-progress: true
