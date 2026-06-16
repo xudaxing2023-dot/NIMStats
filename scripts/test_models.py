@@ -32,17 +32,12 @@ ALL_MODELS = [
     "moonshotai/kimi-k2.6",
     "openai/gpt-oss-120b",
     "google/gemma-4-31b-it",
-    "qwen/qwen3-coder-480b-a35b-instruct",
-    "qwen/qwen2.5-coder-32b-instruct",
     "qwen/qwen3.5-397b-a17b",
     "qwen/qwen3.5-122b-a10b",
-    "mistralai/mistral-large-3-675b-instruct-2512",
     "mistralai/mistral-medium-3.5-128b",
-    "meta/llama-3_3-70b-instruct",
     "meta/llama-4-maverick-17b-128e-instruct",
-    "meta/llama-3.2-90b-vision-instruct",
-    "stepfun-ai/step-3.5-flash",
-    "stepfun-ai/step-3.7-flash"
+    "nvidia/nemotron-3-ultra-550b-a55b",
+    "minimaxai/minimax-m3"
 ]
 
 GROUP1_MODELS = ALL_MODELS[:10]
