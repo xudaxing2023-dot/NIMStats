@@ -1,3 +1,4 @@
+# Force reload cron schedule - 2026-06-16
 name: Benchmark NVIDIA NIM Models
 on:
   workflow_dispatch:
@@ -6,7 +7,7 @@ on:
 concurrency:
   group: nim-benchmark
   cancel-in-progress: true
-jobs:
+jobs: 
   test_group1:
     runs-on: ubuntu-latest
     permissions:
