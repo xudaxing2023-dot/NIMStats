@@ -6,7 +6,6 @@ on:
   schedule:
     - cron: '0 * * * *'   # 每小时整点自动运行（UTC时间）
 
-# 防止同时运行多个实例
 concurrency:
   group: nim-benchmark
   cancel-in-progress: true
