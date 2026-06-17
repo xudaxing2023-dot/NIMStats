@@ -1,13 +1,15 @@
-# Force reload cron schedule - 2026-06-16
 name: Benchmark NVIDIA NIM Models
+
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 */2 * * *'   # 每 2 小时整点运行（推荐，更稳定）
+
 concurrency:
   group: nim-benchmark
   cancel-in-progress: true
-jobs: 
+
+jobs:
   test_group1:
     runs-on: ubuntu-latest
     permissions:
@@ -15,17 +17,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Test model group 1
         env:
           NIM_API_KEY: ${{ secrets.NIM_API_KEY }}
           MODEL_GROUP: group1
         run: python3 scripts/test_models.py
+
       - name: Upload group1 results
         uses: actions/upload-artifact@v4
         with:
           name: results-group1
           path: scripts/results.json
           retention-days: 1
+
   test_group2:
     runs-on: ubuntu-latest
     permissions:
@@ -33,17 +38,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Test model group 2
         env:
           NIM_API_KEY: ${{ secrets.NIM_API_KEY }}
           MODEL_GROUP: group2
         run: python3 scripts/test_models.py
+
       - name: Upload group2 results
         uses: actions/upload-artifact@v4
         with:
           name: results-group2
           path: scripts/results.json
           retention-days: 1
+
   merge_and_update:
     needs: [test_group1, test_group2]
     runs-on: ubuntu-latest
@@ -52,15 +60,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Download all results
         uses: actions/download-artifact@v4
         with:
           path: scripts/
+
       - name: Merge results and update history
         run: |
           mv scripts/results-group1/results.json scripts/results-group1.json || true
           mv scripts/results-group2/results.json scripts/results-group2.json || true
           python3 scripts/merge_results.py
+
       - name: Commit and push results
         run: |
           git config user.name "github-actions[bot]"
@@ -72,4 +83,3 @@ jobs:
           else
             echo "No history updates to commit"
           fi
- 
