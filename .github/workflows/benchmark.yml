@@ -3,7 +3,7 @@ name: Benchmark NVIDIA NIM Models
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 * * * *'   # 每小时第30分钟运行（UTC时间）
+    - cron: '17 * * * *'   # 每小时第17分钟运行（UTC时间）
 
 concurrency:
   group: nim-benchmark
