@@ -5,9 +5,10 @@ on:
   schedule:
     - cron: '17 * * * *'   # 每小时第17分钟运行（UTC时间）
 
-concurrency:
-  group: nim-benchmark
-  cancel-in-progress: false
+# 建议先注释掉或删除整个 concurrency 块
+#concurrency:
+#group: nim-benchmark
+#cancel-in-progress: false
 
 jobs:
   test_group1:
