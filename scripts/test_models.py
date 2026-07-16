@@ -25,7 +25,6 @@ OUTPUT_FILE = SCRIPT_DIR / "results.json"
 ALL_MODELS = [
     "deepseek-ai/deepseek-v4-flash",
     "deepseek-ai/deepseek-v4-pro",
-    "z-ai/glm-5.1",
     "minimaxai/minimax-m2.7",
     "nvidia/nemotron-3-super-120b-a12b",
     "z-ai/glm-5.2",
