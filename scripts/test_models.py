@@ -33,7 +33,7 @@ ALL_MODELS = [
     "qwen/qwen3.5-397b-a17b",
     "qwen/qwen3.5-122b-a10b",
     "nvidia/nemotron-3-ultra-550b-a55b",
-    "minimaxai/minimax-m3"
+    "minimaxai/minimax-m3",
     "thinkingmachines/inkling"
 ]
 
