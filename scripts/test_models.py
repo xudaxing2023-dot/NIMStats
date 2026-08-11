@@ -34,6 +34,7 @@ ALL_MODELS = [
     "qwen/qwen3.5-122b-a10b",
     "nvidia/nemotron-3-ultra-550b-a55b",
     "minimaxai/minimax-m3"
+    "thinkingmachines/inkling"
 ]
 
 GROUP1_MODELS = ALL_MODELS[:10]
