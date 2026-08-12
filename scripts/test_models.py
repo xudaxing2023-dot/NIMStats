@@ -29,9 +29,6 @@ ALL_MODELS = [
     "nvidia/nemotron-3-super-120b-a12b",
     "z-ai/glm-5.2",
     "moonshotai/kimi-k2.6",
-    "openai/gpt-oss-120b",
-    "qwen/qwen3.5-397b-a17b",
-    "qwen/qwen3.5-122b-a10b",
     "nvidia/nemotron-3-ultra-550b-a55b",
     "minimaxai/minimax-m3",
     "thinkingmachines/inkling"
