@@ -23,12 +23,12 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 OUTPUT_FILE = SCRIPT_DIR / "results.json"
 
 ALL_MODELS = [
-    "deepseek-ai/deepseek-v4-flash",
-    "deepseek-ai/deepseek-v4-pro",
-    "minimaxai/minimax-m2.7",
+    "deepseek-ai/deepseek-v4-flash-0731",
+    "deepseek-ai/DeepSeek-V4-Pro-0813",
+ 
     "nvidia/nemotron-3-super-120b-a12b",
     "z-ai/glm-5.2",
-    "moonshotai/kimi-k2.6",
+    
     "nvidia/nemotron-3-ultra-550b-a55b",
     "minimaxai/minimax-m3",
     "thinkingmachines/inkling"
