@@ -31,7 +31,7 @@ ALL_MODELS = [
     
     "nvidia/nemotron-3-ultra-550b-a55b",
     "minimaxai/minimax-m3",
-    "thinkingmachines/inkling"
+    "moonshotai/kimi-k3"
 ]
 
 GROUP1_MODELS = ALL_MODELS[:10]
